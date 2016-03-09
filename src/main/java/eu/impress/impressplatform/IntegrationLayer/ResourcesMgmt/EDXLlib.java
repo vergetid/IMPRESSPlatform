@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.UUID;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import oasis.names.tc.emergency.EDXL.DE._1.*;
+import oasis.names.tc.emergency.edxl.have._1.HospitalStatus;
+import oasis.names.tc.emergency.edxl.have._1.HospitalStatus.Hospital;
 
 /**
  *
@@ -23,9 +26,9 @@ public class EDXLlib {
     //constructs EDXLDEmessage
     public static String DEEncapsulation(String DEString, String EDXLHave) throws DatatypeConfigurationException{
         
-        String EDXLHaveplain = EDXLHave.replace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
-        String finalDEString = DEString.replace("<xmlContent/>", "<xmlContent>"+EDXLHaveplain+"<xmlContent/>").replace("\"", "\\\"");
-        
+        //String EDXLHaveplain = EDXLHave.replace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
+        //String finalDEString = DEString.replace("<xmlContent/>", "<xmlContent>"+EDXLHaveplain+"<xmlContent/>").replace("\"", "\\\"");
+        String finalDEString = DEString.replace("<xmlContent/>", "<xmlContent>"+EDXLHave+"</xmlContent>");
         return finalDEString;
     
     }
@@ -47,14 +50,20 @@ public class EDXLlib {
         ContentObjectType ct = new ContentObjectType();
         XmlContentType xt = new XmlContentType();
         
+        String uuid = UUID.randomUUID().toString();
+        
         //String EDXLHaveplain = EDXLHave.replace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", "");
-        /*List<AnyXMLType> embeddedXMLContent = new ArrayList<AnyXMLType>();
-        AnyXMLType any = new AnyXMLType();        
-        List<Object> anycontent = new ArrayList<Object>();*/
+        //List<AnyXMLType> embeddedXMLContent = new ArrayList<AnyXMLType>();
+        //List<HospitalStatusType> embeddedXMLContent = new ArrayList<HospitalStatusType>();
+        //HospitalStatus hospitalstatus = new HospitalStatus();
+       
+        //AnyXMLType any = new AnyXMLType();
+        //HospitalStatusType hst = new HospitalStatusType();
+        //List<HospitalStatus> anycontent = new ArrayList<HospitalStatus>();
               
         
         EDXLDistribution ed = new EDXLDistribution();
-        ed.setDistributionID("impress_dhc_078362352"); //this must be defined
+        ed.setDistributionID("impress_dhc_"+uuid); //this must be defined
         ed.setSenderID("urn://impress/dhc/bedavailability");
         
         country.add("GR");
@@ -74,10 +83,13 @@ public class EDXLlib {
         ed.setExplicitAddress(explicitAddress);
         
         
-        /*anycontent.add("eewe");        
+        /*anycontent.add(hstatus);        
         any.setAny(anycontent);
-        embeddedXMLContent.add(any);
-        xt.setEmbeddedXMLContent(embeddedXMLContent);*/
+        embeddedXMLContent.add(any);*/
+        //hst.setHospitalStatus(hstatus);
+       // embeddedXMLContent.add(hst);
+        //xt.setEmbeddedXMLContent(embeddedXMLContent);
+        //xt.setEmbeddedXMLContent(hstatus);
         //xt.setEmbeddedXMLContent(EDXLHaveplain);
         xt.setEmbeddedXMLContent(null);
         ct.setXmlContent(xt);

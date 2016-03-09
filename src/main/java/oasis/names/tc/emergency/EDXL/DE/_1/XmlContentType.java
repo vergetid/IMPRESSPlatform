@@ -13,6 +13,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import oasis.names.tc.emergency.edxl.have._1.HospitalStatus;
 
 
 /**
@@ -43,8 +44,11 @@ import javax.xml.bind.annotation.XmlType;
 public class XmlContentType {
 
     protected List<AnyXMLType> keyXMLContent;
-    //protected List<AnyXMLType> embeddedXMLContent;
-    protected String embeddedXMLContent;
+    protected List<AnyXMLType> embeddedXMLContent;
+    //protected List<HospitalStatus> embeddedXMLContent;
+    //protected List<HospitalStatusType> embeddedXMLContent;
+    //protected HospitalStatus embeddedXMLContent;
+    //protected String embeddedXMLContent;
 
     /**
      * Gets the value of the keyXMLContent property.
@@ -75,13 +79,32 @@ public class XmlContentType {
         return this.keyXMLContent;
     }
 
-    public String getEmbeddedXMLContent() {
+    /*public String getEmbeddedXMLContent() {
         return embeddedXMLContent;
     }
 
     public void setEmbeddedXMLContent(String embeddedXMLContent) {
         this.embeddedXMLContent = embeddedXMLContent;
+    }*/
+
+    /*public List<HospitalStatus> getEmbeddedXMLContent() {
+        return embeddedXMLContent;
     }
+
+    public void setEmbeddedXMLContent(List<HospitalStatus> embeddedXMLContent) {
+        this.embeddedXMLContent = embeddedXMLContent;
+    }*/
+
+    /*public HospitalStatus getEmbeddedXMLContent() {
+        return embeddedXMLContent;
+    }
+
+    public void setEmbeddedXMLContent(HospitalStatus embeddedXMLContent) {
+        this.embeddedXMLContent = embeddedXMLContent;
+    }*/
+    
+    
+    
 
     /**
      * Gets the value of the embeddedXMLContent property.
@@ -105,7 +128,7 @@ public class XmlContentType {
      * 
      * 
      */
-    /*public List<AnyXMLType> getEmbeddedXMLContent() {
+    public List<AnyXMLType> getEmbeddedXMLContent() {
         if (embeddedXMLContent == null) {
             embeddedXMLContent = new ArrayList<AnyXMLType>();
         }
@@ -114,7 +137,22 @@ public class XmlContentType {
 
     public void setEmbeddedXMLContent(List<AnyXMLType> embeddedXMLContent) {
         this.embeddedXMLContent = embeddedXMLContent;
+    }
+    
+    /*public List<HospitalStatusType> getEmbeddedXMLContent() {
+        if (embeddedXMLContent == null) {
+            embeddedXMLContent = new ArrayList<HospitalStatusType>();
+        }
+        return this.embeddedXMLContent;
+    }
+
+    public void setEmbeddedXMLContent(List<HospitalStatusType> embeddedXMLContent) {
+        this.embeddedXMLContent = embeddedXMLContent;
     }*/
+    
+    
+  
+    
     
     
     

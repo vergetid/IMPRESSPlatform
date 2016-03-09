@@ -15,12 +15,25 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
 
+
+//@ComponentScan({"eu.impress.impressplatform"})
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 public class Application implements CommandLineRunner{
+    
+    @Autowired
+    BedAvailabilityServiceBean b;
+    
+    @Value("${connections.incimag.emcr.endpoint.message}")
+    private String EMCRUrl;
     
     private static final Logger log = LoggerFactory.getLogger(eu.impress.impressplatform.Application.class);
 
@@ -31,18 +44,37 @@ public class Application implements CommandLineRunner{
     @Override
     public void run(String... strings) throws Exception {
         String bedavailability;
+        String bedavailabilityDEEnvelope;
         String bedavailabilityDE;
+        String bedavailabilityJSON;
         /*RESTManager r = new RESTManager();
-        String  s = r.consumePopulation();*/
-        BedAvailabilityServiceBean b = new BedAvailabilityServiceBean();
-       
-        bedavailability=b.getBedAvailablityHAVE("ΛΑΙΚΟ");
+         String  s = r.consumePopulation();*/
         
-        bedavailabilityDE=b.createBedAvailabilityDE(bedavailability);
-         
-        log.info("Current message: "+bedavailabilityDE);
+        //get HAVE String
+        bedavailability = b.getBedAvailablityHAVE("ΛΑΙΚΟ");
         
+        //get DE String
+        bedavailabilityDEEnvelope = b.createBedAvailabilityDE();
+        
+        //encapsulate in DE
+        bedavailabilityDE = b.getBedAvailabilityEDXLDE(bedavailabilityDEEnvelope, bedavailability);
+        
+        //produce json message
+        bedavailabilityJSON = b.forwardBedAvailability(bedavailabilityDE);
+        
+        //push message to EMCR
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> entity = new HttpEntity<String>(bedavailabilityJSON ,headers);
+        String answer = restTemplate.postForObject(EMCRUrl, entity, String.class);
+
+
+        log.info("Current answer: " + answer);
+        //log.info("Current message: " + bedavailabilityJSON);        
        
+
     }
     
     @PostConstruct
