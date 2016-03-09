@@ -7,6 +7,8 @@ package eu.impress.impressplatform.Services.DHC;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +23,14 @@ import org.springframework.web.client.RestTemplate;
 @EnableAutoConfiguration
 public class RESTManager {
     
+    
+    /*@RequestMapping(    value="/beds/available", 
+			method=RequestMethod.GET,
+			produces=MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> postBedAvailablity(@RequestParam("hospital") String hospitalName) {
+    
+    } */
+    
     @RequestMapping("/")
     String home() {
         return "Hello World!";
@@ -34,10 +44,7 @@ public class RESTManager {
         
         RestTemplate restTemplate = new RestTemplate();
         String s = restTemplate.getForObject("http://192.168.3.27:8080/population/city/Abenbury", String.class);
-        return s;
-
-    
-    
+        return s;    
     }
    
 
