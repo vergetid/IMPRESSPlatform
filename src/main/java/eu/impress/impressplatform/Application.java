@@ -61,6 +61,7 @@ public class Application implements CommandLineRunner{
         
         //produce json message
         bedavailabilityJSON = b.forwardBedAvailability(bedavailabilityDE);
+        log.info("Json message: " + bedavailabilityJSON);
         
         //push message to EMCR
         RestTemplate restTemplate = new RestTemplate();
@@ -71,7 +72,7 @@ public class Application implements CommandLineRunner{
         String answer = restTemplate.postForObject(EMCRUrl, entity, String.class);
 
 
-        log.info("Current answer: " + answer);
+        log.info("EMCR response: " + answer);
         //log.info("Current message: " + bedavailabilityJSON);        
        
 
