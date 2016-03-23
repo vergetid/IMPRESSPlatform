@@ -24,10 +24,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+@SpringBootApplication
+public class Application {
 
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
 //@ComponentScan({"eu.impress.impressplatform"})
-@SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
-public class Application implements CommandLineRunner{
+//@SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
+/*public class Application implements CommandLineRunner{
     
     @Autowired
     BedAvailabilityServiceBean b;
@@ -41,14 +47,14 @@ public class Application implements CommandLineRunner{
         SpringApplication.run(Application.class, args);
     }
     
-    @Override
+    /*@Override
     public void run(String... strings) throws Exception {
         String bedavailability;
         String bedavailabilityDEEnvelope;
         String bedavailabilityDE;
         String bedavailabilityJSON;
         /*RESTManager r = new RESTManager();
-         String  s = r.consumePopulation();*/
+         String  s = r.consumePopulation();
         
         //get HAVE String
         bedavailability = b.getBedAvailablityHAVE("ΛΑΙΚΟ");
@@ -75,16 +81,16 @@ public class Application implements CommandLineRunner{
         //log.info("Current message: " + bedavailabilityJSON);        
        
 
-    }
+    }*/
     
-    @PostConstruct
+    /*@PostConstruct
     public void PostConstruct(){
         
         String s;    
     
-    }
+    }*/
     
    
 
  
-}
+//}

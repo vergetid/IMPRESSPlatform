@@ -7,7 +7,7 @@ public interface LogevoService {
 				Integer numPatients,
 				String hospitalType,
 				String resourceID,
-				Integer assetLevelInit,
+				Float assetLevelInit,
 				Integer deltaT				
 	);
 }

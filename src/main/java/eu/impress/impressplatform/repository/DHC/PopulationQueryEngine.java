@@ -192,6 +192,7 @@ public class PopulationQueryEngine {
 	    		  soln.getLiteral("lat").getString(),
 	    		  soln.getLiteral("long").getString());
 	      building.setCoords(geopoint);
+	      building.setType(type);
 	      buildingsCollection.add(building);
 	    } 
 	    return buildingsCollection;					

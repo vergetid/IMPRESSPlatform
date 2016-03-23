@@ -11,26 +11,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import eu.impress.impressplatform.IntegrationLayer.ResourcesMgmt.LogevoService;
+import eu.impress.impressplatform.Models.DHC.LogevoAssetLevel;
+
 @RestController
 public class LogevoServicesController  {
-	//@Autowired
-	//private LogevoClient logevoClient;
+	@Autowired
+	private LogevoService logevoService;
 	
 	@RequestMapping(
 			value="/logevo/assetlevel",
 			method=RequestMethod.GET,
 			produces=MediaType.APPLICATION_JSON_VALUE			
 	)
-	public ResponseEntity<String> getAssetLevel(
-		//@RequestParam("num_patients") Integer numPatients,
-		//@RequestParam("hospital_type") String hospitalType,
-		//@RequestParam("resource_ID") String resourceID,
-		//@RequestParam(value="asset_level_init", required=false) Integer assetLevelInit,
-		//@RequestParam("delta_T") Integer deltaT) {
-			) {
+	public ResponseEntity<LogevoAssetLevel> getAssetLevel(
+		@RequestParam("num_patients") Integer numPatients,
+		@RequestParam("hospital_type") String hospitalType,
+		@RequestParam("resource_ID") String resourceID,
+		@RequestParam(value="asset_level_init", required=false) Float assetLevelInit,
+		@RequestParam("delta_T") Integer deltaT) {
 		
 		//LogEvoResults logevoResults = logevoClient.getLogevoResults(0, "", "", 1, 1);
 		//logevoClient.test();
-		return new ResponseEntity<String>("Answer"/*+logevoResults.getHtAssetLevel().toString()*/, HttpStatus.OK);
+		//return new ResponseEntity<LogevoAssetLevel>(
+		//		logevoService.getLogevoAssetLevel(numPatients, hospitalType, resourceID, assetLevelInit, deltaT), HttpStatus.OK);
+		return new ResponseEntity<LogevoAssetLevel>(
+				logevoService.getLogevoAssetLevel(600, hospitalType, resourceID, assetLevelInit, 12), HttpStatus.OK);		
 	}
 }

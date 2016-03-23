@@ -1,0 +1,17 @@
+Asset,Trauma Center high level,Trauma Center low level,General Hospital,Specialized hospital (Burns  Pediatric  NCH Cardio),First Aid (no beds)
+Triage (pts/h),2,2,2,2,4
+Emergency Room (n. beds),2,2,2,2,0
+ICU (n. of beds/function),8,4,4,4,0
+General surgery (n. of teams in house/on call),1,1,2,1,0
+Cardio Surgery (n. of teams in house),2,2,0,0,0
+NCH (n. of teams in house),2,2,0,0,0
+Emergency & Trauma surgery (n. teams in house),2,2,0,0,0
+Drugs/Devices (% del valore basale),1,2,4,2,0
+Ambulances (n),1,1,1,0,0
+Radiology (Basic/standardl),0.5,0.5,1,1,1
+Radiology TC (n. of),0.5,0.5,2,2,0
+Radiology ANGIO (n. of),1,2,0,0,0
+General ward (n. of beds),5,7,15,5,0
+Operative teathers (n.),0.5,0.5,2,1,0
+Blood bank (level of function 1-5),1,1,5,1,0
+EMERGENCY DEPT (PS) (n. treated pts/h),2,4,10,2,4
